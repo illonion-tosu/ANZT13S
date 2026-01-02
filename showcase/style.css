@@ -4,12 +4,11 @@
     --now-playing-stats-container-left: 16px;
 }
 
-/* Main Page */
-.main {
+/* Whole Page */
+.page-size {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url("static/background.png");
     width: 2560px;
     height: 1440px;
 }
@@ -20,6 +19,9 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+/* Main Page */
+.main { background-image: url("static/background.png"); }
 
 /* Logo */
 .logo { top: 25px; }
@@ -99,6 +101,9 @@
     border-radius: inherit;
     background-color: rgba(0, 0, 0, 0.4);
 }
+
+/* Gameplay Border */
+.gameplay-border { top: 137px; }
 
 /* Now Playing Container */
 .now-playing-container {
