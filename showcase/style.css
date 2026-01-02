@@ -17,3 +17,14 @@
 
 /* Logo */
 .logo { top: 25px; }
+
+/* Showcase Round Text */
+.showcase-round-text {
+    font-size: 25px;
+    font-family: "Alan Sans";
+    color: rgb(162, 171, 240);
+    font-weight: 700;
+    position: absolute;
+    left: 320px;
+    top: 123px;
+}
