@@ -1,3 +1,7 @@
+:root {
+    --aim-text-color: rgb(255, 193, 209);
+}
+
 /* Main Page */
 .main {
     position: absolute;
@@ -27,4 +31,69 @@
     position: absolute;
     left: 320px;
     top: 123px;
+}
+
+/* Map Shown Container */
+.maps-shown-container {
+    position: absolute;
+    top: 161px;
+    left: 0px;
+    width: 317px;
+    height: 1086px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Map Shown Wrapper */
+.map-shown-wrapper {
+    width: 270px;
+    height: 207px;
+}
+/* Map Shown Identifier */
+.map-shown-identifier {
+    height: 42px;
+    margin-left: -3px;
+}
+/* Map Shown Metadata */
+.map-shown-metadata {
+    font-size: 19px;
+    font-family: "Alan Sans";
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* Map Shown Artist */
+.map-shown-artist {
+    color: rgb(255, 193, 209);
+    margin-top: -12px;
+}
+/* Map Shown Title */
+.map-shown-title {
+    color: white;
+    margin-top: -3px;
+}
+/* Map Shown Difficulty */
+.map-shown-difficulty {
+    color: rgb(255, 193, 209);
+    margin-top: -3px;
+}
+/* Map Shwon Background */
+.map-shown-background {
+    position: relative;
+    --border-radius-px: 22px;
+    width: 270px;
+    height: 100px;
+    margin-top: 5px;
+    background: center / cover;
+    background-image: url("https://assets.ppy.sh/beatmaps/292301/covers/cover.jpg");
+    border-radius: 0 var(--border-radius-px) 0 var(--border-radius-px);
+}
+/* Map Shown Overlay */
+.map-shown-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background-color: rgba(0, 0, 0, 0.4);
 }
