@@ -2,6 +2,7 @@
     --aim-text-color: rgb(255, 193, 209);
 
     --now-playing-stats-container-left: 16px;
+    --vinyl-container-dimension: 176px;
 }
 
 /* Whole Page */
@@ -69,7 +70,7 @@
 }
 /* Map Shown Artist */
 .map-shown-artist {
-    color: rgb(255, 193, 209);
+    color: var(--aim-text-color);
     margin-top: -12px;
 }
 /* Map Shown Title */
@@ -79,7 +80,7 @@
 }
 /* Map Shown Difficulty */
 .map-shown-difficulty {
-    color: rgb(255, 193, 209);
+    color: var(--aim-text-color);
     margin-top: -3px;
 }
 /* Map Shwon Background */
@@ -188,4 +189,38 @@
 .now-playing-replayer-name {
     font-weight: 600;
     color: white;
+}
+
+/* Now Playing Metadata Container */
+.now-playing-metadata-container {
+    position: absolute;
+    bottom: 5px;
+    left: 605px;
+    display: flex;
+}
+/* Vinyl Container */
+.vinyl-container {
+    background-color: var(--aim-text-color);
+    border-radius: 50%;
+    width: var(--vinyl-container-dimension);
+    height: var(--vinyl-container-dimension);
+}
+/* Vinyl */
+.vinyl {
+    mix-blend-mode: difference;
+    width: 100%;
+    height: auto;
+}
+/* Vinyl Map */
+.vinyl-map {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    --dimension: 117px;
+    width: var(--dimension);
+    height: var(--dimension);
+    background: center / cover;
+    background-image: url("https://assets.ppy.sh/beatmaps/292301/covers/cover.jpg");
+    border-radius: 50%;
 }
