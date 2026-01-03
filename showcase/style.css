@@ -3,6 +3,7 @@
 
     --now-playing-stats-container-left: 16px;
     --vinyl-container-dimension: 176px;
+    --now-playing-metadata-text-container-width: 1253px;
 }
 
 /* Whole Page */
@@ -200,16 +201,22 @@
 }
 /* Vinyl Container */
 .vinyl-container {
-    background-color: var(--aim-text-color);
+    background-color: #67a7ff;
     border-radius: 50%;
     width: var(--vinyl-container-dimension);
     height: var(--vinyl-container-dimension);
+    z-index: 1;
 }
 /* Vinyl */
 .vinyl {
-    mix-blend-mode: difference;
+    mix-blend-mode: luminosity;
     width: 100%;
     height: auto;
+    animation: spin 20s linear infinite;
+}
+@keyframes spin {
+    0% { rotate: 0deg; }
+    100% { rotate: 360deg; }
 }
 /* Vinyl Map */
 .vinyl-map {
@@ -224,3 +231,48 @@
     background-image: url("https://assets.ppy.sh/beatmaps/292301/covers/cover.jpg");
     border-radius: 50%;
 }
+/* Now Playing Metadata Text Container */
+.now-playing-metadata-text-container {
+    position: absolute;
+    left: calc(var(--vinyl-container-dimension) / 2);
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--now-playing-metadata-text-container-width);
+    height: 148px;
+    border-radius: 0 45px 45px 0;
+}
+/* Now Playing Metadata Text Background */
+.now-playing-metadata-text-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(4, 30, 124);
+    opacity: 0.341;
+    border-radius: inherit;
+}
+/* Now Playing Metadata Text */
+.now-playing-metadata-text {
+    position: absolute;
+    left: 10px;
+    width: calc(var(--now-playing-metadata-text-container-width) - 100px);
+    font-family: "Alan Sans";
+    text-align: center;
+    font-size: 21px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.now-playing-metadata-text-blue {
+    color: rgb(154, 168, 255);
+    font-weight: 400;
+}
+.now-playing-metadata-text-white {
+    color: white;
+    font-weight: 600;
+}
+.now-playing-metadata-artist { top: 6px; }
+.now-playing-metadata-title { top: 30px; }
+.now-playing-metadata-difficulty { top: 57px; }
+.now-playing-metadata-mapped-by { top: 104px; }
