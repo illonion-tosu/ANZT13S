@@ -1,6 +1,11 @@
 :root {
-    --aim-text-color: rgb(255, 193, 209);
-    --vinyl-aim-color: rgb(255, 86, 158);
+    --aim-text-color: rgb(255, 194, 209);
+    --tap-text-color: rgb(255, 184, 153);
+    --ctl-ctl-color: rgb(153, 255, 206);
+    --gim-ctl-color: rgb(240, 204, 255);
+    --tb-ctl-color: rgb(204, 225, 255);
+
+    --vinyl-aim-color: rgb(255, 87, 160);
     --vinyl-tap-color: rgb(255, 109, 44);
     --vinyl-ctl-color: rgb(44, 255, 153);
     --vinyl-gim-color: rgb(209, 98, 255);
@@ -28,9 +33,6 @@
     left: 50%;
     transform: translateX(-50%);
 }
-
-/* Main Page */
-.main { background-image: url("static/background.png"); }
 
 /* Video */
 video {
@@ -62,6 +64,8 @@ video {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 30px;
 }
 /* Map Shown Wrapper */
 .map-shown-wrapper {

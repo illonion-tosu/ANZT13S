@@ -32,6 +32,8 @@ Promise.all([loadShowcaseBeatmaps()]).then(([showcaseBeatmaps]) => {
 	}
 })
 
+// Maps Shown Container 
+const mapsShownContainerEl = document.getElementById("maps-shown-container")
 // Video Gradient
 const videoContainerEl = document.getElementById("video-container")
 const videoGradientEl = document.getElementById("video-gradient")
@@ -116,23 +118,68 @@ socket.onmessage = event => {
         
         const showcaseBeatmap = findShowcaseBeatmap(currentMapId)
         if (showcaseBeatmap) {
-            // Update right and bottom according to the new map
+			const modLowercase = showcaseBeatmap.mod.toLowerCase()
+			// Video
+			videoContainerEl.style.opacity = 1
+			videoGradientEl.src = `static/category-gradients/${modLowercase}Gradient.webm`
+			videoContainerEl.load()
+			videoContainerEl.play()
+
+			// Load the currently shown map into the "maps shown" tab
+			// Reset Maps Shwon tab
+			if (!mapsShownContainerEl.dataset.id || mapsShownContainerEl.dataset.id !== showcaseBeatmap.mod) {
+				mapsShownContainerEl.innerHTML = ""
+				mapsShownContainerEl.setAttribute("data-id", showcaseBeatmap.mod)
+			} else {
+				// Map Shown Wrapper
+				const mapShownWrapper = document.createElement("div")
+				mapShownWrapper.classList.add("map-shown-wrapper")
+				// Map Shown Identifier
+				const mapShownIdentifier = document.createElement("img")
+				mapShownIdentifier.classList.add("map-shown-identifier")
+				mapShownIdentifier.setAttribute("src", nowPlayingIdentifierEl.getAttribute("src"))
+				// Map Shown Artist
+				const mapShownArtist = document.createElement("div")
+				mapShownArtist.classList.add("map-shown-metadata", "map-shown-artist")
+				mapShownArtist.style.color = `var(--${modLowercase}-text-color)`
+				mapShownArtist.textContent = nowPlayingMetadataArtistEl.textContent
+				// Map Shown Title
+				const mapShownTitle = document.createElement("div")
+				mapShownTitle.classList.add("map-shown-metadata", "map-shown-title")
+				mapShownTitle.textContent = nowPlayingMetadataTitleEl.textContent
+				// Map Shown Difficulty
+				const mapShownDifficulty = document.createElement("div")
+				mapShownDifficulty.classList.add("map-shown-metadata", "map-shown-difficulty")
+				mapShownDifficulty.style.color = `var(--${modLowercase}-text-color)`
+				mapShownDifficulty.textContent = nowPlayingMetadataDifficultyEl.textContent
+				// Map Shown Background
+				const mapShownBackground = document.createElement("div")
+				mapShownBackground.classList.add("map-shown-background")
+				mapShownBackground.style.backgroundImage = getComputedStyle(vinylMapEl).backgroundImage
+				// Map Shown Overlay
+				const mapShownOverlay = document.createElement("div")
+				mapShownOverlay.classList.add("map-shown-overlay")
+				mapShownBackground.append(mapShownOverlay)
+				// Append everything
+				mapShownWrapper.append(mapShownIdentifier, mapShownArtist, mapShownTitle, mapShownDifficulty, mapShownBackground)
+				mapsShownContainerEl.append(mapShownWrapper)
+			}
+
+			// Update right and bottom according to the new map
             nowPlayingIdentifierEl.style.display = "block"
             nowPlayingIdentifierEl.setAttribute("src", `static/category-images/${showcaseBeatmap.mod}${showcaseBeatmap.order}.png`)
             vinylContainerEl.style.backgroundColor = `var(--vinyl-${showcaseBeatmap.mod.toLowerCase()}-color)`
 			document.getElementById(showcaseBeatmap.beatmap_id).style.color = "white"
-
-			// Video
-			videoContainerEl.style.opacity = 1
-			videoGradientEl.src = `static/category-gradients/${showcaseBeatmap.mod.toLowerCase()}Gradient.webm`
-			videoContainerEl.load()
-			videoContainerEl.play()
         } else {
             nowPlayingIdentifierEl.style.display = "none"
             vinylContainerEl.style.backgroundColor = "transparent"
 
 			// Video
 			videoContainerEl.style.opacity = 0
+
+			// Map Shown Container
+			mapsShownContainerEl.innerHTML = ""
+			mapsShownContainerEl.removeAttribute("data-id")
         }
         
         // Objects
@@ -144,7 +191,7 @@ socket.onmessage = event => {
         vinylMapEl.style.backgroundImage = `url("https://assets.ppy.sh/beatmaps/${beatmapData.set}/covers/cover.jpg")`
         nowPlayingMetadataArtistEl.textContent = beatmapData.artist
         nowPlayingMetadataTitleEl.textContent = beatmapData.title
-        nowPlayingMetadataDifficultyEl.textContent = beatmapData.version
+        nowPlayingMetadataDifficultyEl.textContent = `[${beatmapData.version}]`
         nowPlayingMetadataMapperEl.textContent = beatmapData.mapper
     }
 
