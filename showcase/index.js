@@ -32,6 +32,9 @@ Promise.all([loadShowcaseBeatmaps()]).then(([showcaseBeatmaps]) => {
 	}
 })
 
+// Video Gradient
+const videoContainerEl = document.getElementById("video-container")
+const videoGradientEl = document.getElementById("video-gradient")
 // Vinyl Container
 const vinylContainerEl = document.getElementById("vinyl-container")
 // Now Playing Indeitifer
@@ -61,8 +64,6 @@ let currentMapId, currentMapChecksum
 // Strains
 const progressChart = document.getElementById("progress")
 let tempStrains, seek, fullTime, onepart
-let changeStats = false
-let statsCheck = false
 let last_strain_update = 0
 
 window.onload = function () {
@@ -107,6 +108,11 @@ socket.onmessage = event => {
     if ((currentMapId !== beatmapData.id || currentMapChecksum !== beatmapData.checksum) && allShowcaseBeatmaps) {
         currentMapId = beatmapData.id
         currentMapChecksum = beatmapData.checksum
+
+		// Reset map identifiers container
+		for (let i = 0; i < allShowcaseBeatmaps.length; i++) {
+			document.getElementById(allShowcaseBeatmaps[i].beatmap_id).style.color = "unset"
+		}
         
         const showcaseBeatmap = findShowcaseBeatmap(currentMapId)
         if (showcaseBeatmap) {
@@ -114,9 +120,19 @@ socket.onmessage = event => {
             nowPlayingIdentifierEl.style.display = "block"
             nowPlayingIdentifierEl.setAttribute("src", `static/category-images/${showcaseBeatmap.mod}${showcaseBeatmap.order}.png`)
             vinylContainerEl.style.backgroundColor = `var(--vinyl-${showcaseBeatmap.mod.toLowerCase()}-color)`
+			document.getElementById(showcaseBeatmap.beatmap_id).style.color = "white"
+
+			// Video
+			videoContainerEl.style.opacity = 1
+			videoGradientEl.src = `static/category-gradients/${showcaseBeatmap.mod.toLowerCase()}Gradient.webm`
+			videoContainerEl.load()
+			videoContainerEl.play()
         } else {
             nowPlayingIdentifierEl.style.display = "none"
             vinylContainerEl.style.backgroundColor = "transparent"
+
+			// Video
+			videoContainerEl.style.opacity = 0
         }
         
         // Objects

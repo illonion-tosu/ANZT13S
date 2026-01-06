@@ -32,6 +32,12 @@
 /* Main Page */
 .main { background-image: url("static/background.png"); }
 
+/* Video */
+video {
+    opacity: 1;
+    transition: 500ms ease-in-out;
+}
+
 /* Logo */
 .logo { top: 25px; }
 
