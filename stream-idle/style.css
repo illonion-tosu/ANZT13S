@@ -25,3 +25,44 @@ Technical Difficulties - Right 900px;
     bottom: -1px;
     left: 2124px;
 }
+
+.now-playing-metadata-text-container {
+    position: absolute;
+    left: 2210px;
+    top: 1282px;
+    width: 329px;
+    height: 135px;
+    border-radius:  0 60px 60px 0;
+}
+.now-playing-metadata-text-background {
+    position: absolute;
+    background-color: rgb(67, 67, 67);
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    opacity: 0.5;
+}
+
+/* Now Playing Metadarta Info */
+.now-playing-metadata-info {
+    position: absolute;
+    font-family: "Alan Sans";
+    width: 225px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.471);   
+}
+.now-playing-metadata-side {
+    left: 94px;
+    font-size: 17px;
+}
+.now-playing-metadata-artist { bottom: 86px; }
+.now-playing-metadata-time { top: 86px; }
+.now-playing-metadata-title {
+    left: 98px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 23px;
+    font-weight: 700;
+}
