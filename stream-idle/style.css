@@ -1,10 +1,8 @@
+:root {
+
+}
+
 /* Stream Type */
-/*
-Stream Starting Soon - Right 937px
-Stream Starting Soon - Right 940px
-Intermission - Right 1075px
-Technical Difficulties - Right 900px;
-*/
 .stream-type {
     font-size: 40px;
     font-family: "Alan Sans";
@@ -21,7 +19,6 @@ Technical Difficulties - Right 900px;
     bottom: -1px;
     left: 2124px;
 }
-
 .now-playing-metadata-text-container {
     position: absolute;
     left: 2210px;
@@ -38,7 +35,6 @@ Technical Difficulties - Right 900px;
     border-radius: inherit;
     opacity: 0.5;
 }
-
 /* Now Playing Metadarta Info */
 .now-playing-metadata-info {
     position: absolute;
