@@ -28,8 +28,8 @@
     animation: spin 20s linear infinite;
 }
 @keyframes spin {
-    0% { rotate: 0deg; }
-    100% { rotate: 360deg; }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 /* Vinyl Map */
 .vinyl-map {
