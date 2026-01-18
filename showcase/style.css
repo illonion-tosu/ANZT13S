@@ -170,20 +170,37 @@ video {
     top: 36px;
     justify-content: space-between;
 }
-.now-playing-long-stats-container { top: 172px; }
+.now-playing-long-stats-container {top: 172px; }
 /* Stats Number + Wrapper */
-.now-playing-stat-wrapper { margin-bottom: 24px; }
-.now-playing-stat-long-wrapper {
-    width: 200px;
+.now-playing-stat-wrapper {
+    margin-bottom: 24px;
     display: flex;
 }
-.now-playing-stat-text { width: 65px; }
+.now-playing-stat-long-wrapper {
+    width: 200px;
+    justify-content: space-between;
+}
+/* Stat Texts */
+.now-playing-stat-text {
+    width: 65px;
+    text-align: right;
+}
+/* Stat Numbers */
 .now-playing-stat-number {
     font-weight: 600;
     color: white;
+    font-variant-numeric: tabular-nums;
 }
 .now-playing-short-stat-number { margin-left: 10px; }
-.now-playing-long-stat-number { margin-left: 31px; }
+.now-playing-long-stat-number {
+    width: 65px;
+    text-align: left;
+}
+#now-playing-stat-cs { margin-left: 12px; }
+#now-playing-stat-sr, #now-playing-stat-ar {
+    width: 45px;
+    text-align: right;
+}
 /* Now Playing Divider */
 .now-playing-divider-1 { top: 142px; }
 .now-playing-divider-2 { top: 387px; }
