@@ -1,0 +1,10 @@
+.main {
+    background-image: url("static/background.png");
+}
+
+/* Logo */
+.logo {
+    position: absolute;
+    top: 19px;
+    left: 17px;
+}
