@@ -157,7 +157,7 @@ socket.onmessage = event => {
 
 			// Update right and bottom according to the new map
             nowPlayingIdentifierEl.style.display = "block"
-            nowPlayingIdentifierEl.setAttribute("src", `static/category-images/${showcaseBeatmap.mod}${showcaseBeatmap.order}.png`)
+            nowPlayingIdentifierEl.setAttribute("src", `../_shared/assets/category-images/${showcaseBeatmap.mod}${showcaseBeatmap.order}.png`)
             vinylContainerEl.style.backgroundColor = `var(--vinyl-${showcaseBeatmap.mod.toLowerCase()}-color)`
 			document.getElementById(showcaseBeatmap.beatmap_id).style.color = "white"
 
