@@ -37,7 +37,7 @@
 /* Team Background */
 .team-background {
     position: absolute;
-    top: 162px;
+    top: 132px;
     width: 388px;
     height: 49px;
 }
@@ -55,7 +55,7 @@
 /* Team Name */
 .team-name {
     position: absolute;
-    top: 158px;
+    top: 128px;
     color: white;
     font-weight: 700;
     font-size: 42px;
@@ -67,7 +67,7 @@
 /* Team Point Container */
 .team-point-container {
     position: absolute;
-    top: 220px;;
+    top: 180px;
     display: flex;
     gap: 11px;
 }
@@ -80,7 +80,7 @@
 /* Team Ban Container */
 .team-ban-container {
     position: absolute;
-    top: 277px;
+    top: 247px;
     display: flex;
     color: white;
     gap: 10px;
@@ -97,6 +97,7 @@
 /* Current Map Background Image */
 .current-map-background-image {
     position: absolute;
+    top: -30px;
     width: 1142px;
     height: 777px;
     mask-image: url("static/layer-mask.png");
@@ -112,7 +113,7 @@
 
 /* Current Map Category Image*/
 .current-map-category-image {
-    top: 85px;
+    top: 55px;
     height: 60px;
 }
 
@@ -122,24 +123,24 @@
     color: rgb(229, 229, 229);
     font-size: 27px;
 }
-.current-map-artist-title { top: 173px; }
-.current-map-mapper { top: 200px;}
+.current-map-artist-title { top: 143px; }
+.current-map-mapper { top: 170px;}
 .current-map-metadata-bold { font-weight: 700; }
 
 /* Current Map Picker */
 .current-map-picker {
-    top: 525px;
+    top: 495px;
     height: 43px;
 }
 /* .current-map-picker {
-    top: 565px;
+    top: 535px;
     height: 65px;
 } */
 
 /* Current Map Win Result */
-.current-map-win-result { top: 571px; }
+.current-map-win-result { top: 541px; }
 .current-mpa-win-scores {
-    top: 577px;
+    top: 547px;
     font-family: "SUSE";
     color: white;
     font-weight: 700;
@@ -148,9 +149,59 @@
 .current-map-win-scores-medium { font-weight: 500; }
 
 /* Chat Box */
-.chat-box { top: 672px; }
+.chat-box {
+    position: absolute;
+    top: 642px;
+    left: 1283px;
+    transform: translateX(-50%);
+}
 
 /* Chat Display Container */
 .chat-display-container {
     position: absolute;
+    top: 646px;
+    left: 873px;
+    width: 815px;
+    height: 208px;
+    border-radius: 20px;
 }
+.chat-display-wrapper {
+    --margin: 7px;
+    position: absolute;
+    top: var(--margin);
+    left: var(--margin);
+    right: var(--margin);
+    bottom: var(--margin);
+
+    width: calc(100% - var(--margin) * 2);
+    max-height: calc(100% - var(--margin) * 2);
+
+    overflow-y: auto;
+    scroll-behavior: smooth;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+/* Chat Message */
+.chat-message-wrapper {
+    width: 100%;
+    display: flex;
+    font-family: "Alan Sans";
+    font-weight: 500;
+    text-shadow: 0px 5px 8.37px rgba(0, 0, 0, 0.27);
+    font-size: 24px;
+    letter-spacing: -0.7px;
+    color: white;
+}
+.chat-message-time {
+    color: rgb(209, 189, 83);
+    width: 14%;
+    text-align: center;
+}
+.unknown { color: rgb(255, 233, 103); }
+.left { color: rgb(255, 103, 103); }
+.right { color: rgb(103, 220, 255); }
+.bot { color: rgb(103, 255, 136); }
