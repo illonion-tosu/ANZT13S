@@ -2,7 +2,8 @@
 .main {
     width: 1920px;
     height: 1080px;
-    background-image: url("static/background.png")
+    background-image: url("static/background.png");
+    font-family: "Alan Sans";
 }
 
 /* Logo */
@@ -19,13 +20,27 @@
     lefT: 40px;
 }
 
+/* Team Seed */
 .team-seed {
     font-size: 35px;
-    font-family: "Alan Sans";
     color: rgb(255, 255, 255);
     font-weight: bold;
     text-shadow: 0px 3px 7px rgba(0, 0, 0, 1);
     position: absolute;
     left: 271px;
     top: 160px;
+}
+
+/* Team Name */
+.team-name {
+    font-size: 65px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0px 3px 7px rgba(0, 0, 0, 1);
+    position: absolute;
+    left: 274px;
+    top: 212px;
+    width: 670px;
+    height: 59px;
+    text-wrap: nowrap;
 }
