@@ -7,7 +7,6 @@
 .main {
     width: 1920px;
     height: 1080px;
-    background-image: url("static/background.png");
     font-family: "Alan Sans";
 }
 
@@ -47,7 +46,7 @@
     top: 212px;
     width: 670px;
     height: 59px;
-    text-wrap: nowrap;
+    white-space: nowrap;
 }
 
 /* Team Players */
