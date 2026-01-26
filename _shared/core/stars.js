@@ -57,6 +57,8 @@ export function setDefaultStarCount(bestOf, redTeamStarContainerEl, blueTeamStar
     firstTo = Math.ceil(totalBestOf / 2)
     saveStarCount()
     renderStars(redTeamStarContainerEl, blueTeamStarContainerEl)
+
+    console.log(totalBestOf)
 }
 
 // Display Stars
@@ -96,12 +98,7 @@ function iterateStarImages(starCount, starContainer, firstTo) {
 }
 
 function createStarImage(status) {
-    const starWrapper = document.createElement("div")
-    starWrapper.classList.add("star-wrapper")
-
     const image = document.createElement("img")
-    image.setAttribute("src", `../_shared/assets/stars/${status}.png`)
-
-    starWrapper.append(image)
-    return starWrapper
+    image.setAttribute("src", `../_shared/assets/points/point-${status}.png`)
+    return image
 }
