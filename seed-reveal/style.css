@@ -74,6 +74,7 @@
     position: relative;
     width: 306px;
     height: 493px;
+    filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.5));
 }
 
 /* Mod Container Background */
