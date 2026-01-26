@@ -6,8 +6,12 @@ import { createTosuWsSocket } from "../_shared/core/websocket.js"
 const redTeamStarContainerEl = document.getElementById("red-team-star-container")
 const blueTeamStarContainerEl = document.getElementById("blue-team-star-container")
 
+// Mappool Management Maps
+const mappoolManagementMapsEl = document.getElementById("mappool-management-maps")
+
 // Load mappool
 let bestOf = 0
+let banCount = 0
 const roundNameEl = document.getElementById("round-name")
 let allBeatmaps = []
 Promise.all([loadBeatmaps()]).then(([beatmaps]) => {
@@ -18,18 +22,37 @@ Promise.all([loadBeatmaps()]).then(([beatmaps]) => {
     switch (beatmaps.roundName) {
         case "RO24": case "RO16":
             bestOf = 9
+            banCount = 1
             break
         case "QF": case "SF":
             bestOf = 11
+            banCount = 2
             break
         case "F": case "GF":
             bestOf = 13
+            banCount = 2
             break
     }
 
     // Set default star count
     setDefaultStarCount(bestOf, redTeamStarContainerEl, blueTeamStarContainerEl)
+
+        // Create map pick buttons
+    for (let i = 0; i < allBeatmaps.length; i++) {
+        const button = document.createElement("button")
+        button.addEventListener("mousedown", mapClickEvent)
+        button.addEventListener("contextmenu", function(event) {event.preventDefault()})
+        button.classList.add("sidebar-button")
+        button.dataset.id = allBeatmaps[i].beatmap_id
+        button.textContent = `${allBeatmaps[i].mod}${allBeatmaps[i].order}`
+        mappoolManagementMapsEl.append(button)
+    }
 })
+
+// Map Click Event
+function mapClickEvent(event) {
+
+}
 
 // Team Names
 const teamRedNameEl = document.getElementById("team-red-name")

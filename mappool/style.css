@@ -93,6 +93,7 @@
     font-family: "Ageta Chubby";
     font-size: 29px;
     line-height: 30px;
+    display: none;
 }
 .team-ban-container img { height: 35px; }
 
