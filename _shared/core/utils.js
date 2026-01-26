@@ -17,3 +17,6 @@ export function setLengthDisplay(seconds) {
 
     return `${minuteCount.toString().padStart(2, "0")}:${secondCount.toString().padStart(2, "0")}`
 }
+
+// Sleep
+export const delay = async time => new Promise(resolve => setTimeout(resolve, time))
