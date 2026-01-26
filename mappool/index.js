@@ -49,9 +49,45 @@ Promise.all([loadBeatmaps()]).then(([beatmaps]) => {
     }
 })
 
+// Ban Containers
+const teamRedBanContainerEl = document.getElementById("team-red-ban-container")
+const teamBlueBanContainerEl = document.getElementById("team-blue-ban-container")
+
 // Map Click Event
 function mapClickEvent(event) {
+    // Find map
+    const currentMapId = this.dataset.id
+    const currentMap = findBeatmap(currentMapId)
+    if (!currentMap) return
 
+    // Team
+    let team
+    if (event.button === 0) team = "red"
+    else if (event.button === 2) team = "blue"
+    if (!team) return
+
+    // Action
+    let action = "pick"
+    if (event.ctrlKey) action = "ban"
+
+    // Check if map exists in bans
+    const mapCheck = !!(
+        teamRedBanContainerEl.querySelector(`[data-id="${currentMapId}"]`) ||
+        teamBlueBanContainerEl.querySelector(`[data-id="${currentMapId}"]`)
+    )
+    if (mapCheck) return
+
+    // If ban
+    if (action === "ban") {
+        const currentElement = team === "red" ? teamRedBanContainerEl : teamBlueBanContainerEl
+        currentElement.style.display = "flex"
+
+        if (currentElement.childElementCount < 1 + banCount) {
+            const categoryImage = document.createElement("img")
+            categoryImage.setAttribute("src", `../_shared/assets/category-images/${currentMap.mod.toUpperCase()}${currentMap.order}.png`)
+            currentElement.append(categoryImage)
+        }
+    }
 }
 
 // Team Names
@@ -66,14 +102,14 @@ socket.onmessage = event => {
     console.log(data)
 
     // Setting team names
-    // if (currentTeamRedName !== data.tourney.team.left) {
-    //     currentTeamRedName = data.tourney.team.left
-    //     teamRedNameEl.textContent = currentTeamRedName
-    // }
-    // if (currentTeamBlueName !== data.tourney.team.right) {
-    //     currentTeamBlueName = data.tourney.team.right
-    //     teamBlueNameEl.textContent = currentTeamBlueName
-    // }
+    if (currentTeamRedName !== data.tourney.team.left) {
+        currentTeamRedName = data.tourney.team.left
+        teamRedNameEl.textContent = currentTeamRedName
+    }
+    if (currentTeamBlueName !== data.tourney.team.right) {
+        currentTeamBlueName = data.tourney.team.right
+        teamBlueNameEl.textContent = currentTeamBlueName
+    }
 }
 
 // Update Star Count Buttons
