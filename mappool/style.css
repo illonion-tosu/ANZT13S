@@ -59,6 +59,10 @@
     font-size: 42px;
     letter-spacing: -1px;
     text-indent: 0.5px;
+    white-space: nowrap;
+    width: 355px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .team-red-name { right: var(--team-name-x); }
 .team-blue-name { left: var(--team-name-x); }

@@ -57,8 +57,6 @@ export function setDefaultStarCount(bestOf, redTeamStarContainerEl, blueTeamStar
     firstTo = Math.ceil(totalBestOf / 2)
     saveStarCount()
     renderStars(redTeamStarContainerEl, blueTeamStarContainerEl)
-
-    console.log(totalBestOf)
 }
 
 // Display Stars

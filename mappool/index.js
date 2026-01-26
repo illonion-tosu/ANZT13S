@@ -43,14 +43,14 @@ socket.onmessage = event => {
     console.log(data)
 
     // Setting team names
-    if (currentTeamRedName !== data.tourney.team.left) {
-        currentTeamRedName = data.tourney.team.left
-        teamRedNameEl.textContent = currentTeamRedName
-    }
-    if (currentTeamBlueName !== data.tourney.team.right) {
-        currentTeamBlueName = data.tourney.team.right
-        teamBlueNameEl.textContent = currentTeamBlueName
-    }
+    // if (currentTeamRedName !== data.tourney.team.left) {
+    //     currentTeamRedName = data.tourney.team.left
+    //     teamRedNameEl.textContent = currentTeamRedName
+    // }
+    // if (currentTeamBlueName !== data.tourney.team.right) {
+    //     currentTeamBlueName = data.tourney.team.right
+    //     teamBlueNameEl.textContent = currentTeamBlueName
+    // }
 }
 
 // Update Star Count Buttons
