@@ -1,13 +1,13 @@
-let allTeamsSeedReveal = []
+let allTeams = []
 
 // Load teams
-export async function loadTeamsSeedReveal() {
-    const response = await axios.get("../_data/teams-seed-reveal.json")
-    allTeamsSeedReveal = response.data
-    return allTeamsSeedReveal
+export async function loadTeams() {
+    const response = await axios.get("../_data/teams.json")
+    allTeams = response.data
+    return allTeams
 }
 
 // Find team
-export async function findTeamSeedReveal(team_name) {
-    return allTeamsSeedReveal.find(t => t.team_name === team_name)
+export async function findTeam(team_name) {
+    return allTeams.find(t => t.team_name === team_name)
 }

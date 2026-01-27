@@ -1,11 +1,11 @@
-import { loadTeamsSeedReveal } from "../_shared/core/teams.js"
+import { loadTeams } from "../_shared/core/teams.js"
 
 let currentTeamNumber = 0
 
-let allTeamsSeedReveal  = []
-Promise.all([loadTeamsSeedReveal()]).then(([teams]) => {
+let allTeams  = []
+Promise.all([loadTeams()]).then(([teams]) => {
     // Load teams
-    allTeamsSeedReveal = teams
+    allTeams = teams
     renderTeam()
 })
 
@@ -22,7 +22,7 @@ const mapScoreElementIds = [
 
 // Load current team
 function renderTeam() {
-    const data = allTeamsSeedReveal[currentTeamNumber]
+    const data = allTeams[currentTeamNumber]
 
     // Team Info
     teamSeedEl.textContent = `#${data.team_seed}`
@@ -52,8 +52,8 @@ function setCurrentTeamNumber(action) {
     if (action === "plus") currentTeamNumber++
     else if (action === "minus") currentTeamNumber--
 
-    if (currentTeamNumber < 0) currentTeamNumber = allTeamsSeedReveal.length - 1
-    if (currentTeamNumber > allTeamsSeedReveal.length - 1) currentTeamNumber = 0
+    if (currentTeamNumber < 0) currentTeamNumber = allTeams.length - 1
+    if (currentTeamNumber > allTeams.length - 1) currentTeamNumber = 0
 
     renderTeam()
 }
