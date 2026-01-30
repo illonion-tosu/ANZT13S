@@ -206,8 +206,11 @@ const teamRedNameEl = document.getElementById("team-red-name")
 const teamBlueNameEl = document.getElementById("team-blue-name")
 let currentTeamRedName, currentTeamBlueName
 
-// Variables
+// Winner Checking Variables
 let noOfClients, currentRedScore, currentBlueScore, checkedWinner = false
+
+// Mappool Variables
+let mapId, mapChecksum
 
 // Socket
 const socket = createTosuWsSocket()
@@ -248,6 +251,33 @@ socket.onmessage = event => {
         currentRedScore = 0
         currentBlueScore = 0
         checkedWinner = false
+    }
+
+    // Set beatmap information
+    if ((mapId !== data.beatmap.id || mapChecksum !== data.beatmap.checksum) && allBeatmaps) {
+        mapId = data.beatmap.id
+        mapChecksum = data.beatmap.checksum
+
+        // Find element
+        const element = mappoolManagementMapsEl.querySelector(`[data-id="${mapId}"]`)
+
+        // Click Event
+        if (isAutopickOn && (!element.hasAttribute("data-is-autopicked") || element.getAttribute("data-is-autopicked") !== "true")) {
+            // Check if autopicked already
+            const event = new MouseEvent('mousedown', {
+                bubbles: true,
+                cancelable: true,
+                view: window,
+                button: (currentPicker === "red")? 0 : 2
+            })
+            element.dispatchEvent(event)
+            element.setAttribute("data-is-autopicked", "true")
+
+            if (currentPicker === "red") setAutopicker("blue")
+            else if (currentPicker === "blue") setAutopicker("red")
+        } else {
+            setAutopicker("none")
+        }
     }
 }
 
