@@ -398,3 +398,6 @@
     border: none;
 }
 .which-map-button { width: 70px; }
+.which-pick-button {
+    width: 125px;
+}

@@ -445,9 +445,7 @@ function setBanPickAction() {
         whichPickSelect.classList.add("which-map-select")
 
         // Which Map Select
-        makeTeamPickButton("red", whichPickSelect)
-        makeTeamPickButton("blue", whichPickSelect)
-        whichTeamButtonCreate("TB", 1, "TB", whichPickSelect)
+        makeTeamPickButton(whichPickSelect)
         banPickManagementEl.append(whichPickSelect)
 
         // Set Pick
@@ -512,21 +510,20 @@ function makeTeamSelectOption(team) {
 }
 
 // Team Pick Button
-function makeTeamPickButton(side, whichPickSelect) {
-    for (let i = 1; i < firstTo; i++) {
+function makeTeamPickButton(whichPickSelect) {
+    for (let i = 0; i < bestOf; i++) {
         // Which Map Button
-        whichTeamButtonCreate(`${side.substring(0, 1).toUpperCase()}${side.substring(1)}`, i, side, whichPickSelect)
+        whichTeamButtonCreate(i, whichPickSelect)
     }
 }
 
 // Which Pick Button Create
-function whichTeamButtonCreate(text, i, side, whichPickSelect) {
+function whichTeamButtonCreate(i, whichPickSelect) {
     const whichPickButton = document.createElement("button")
     whichPickButton.classList.add("which-side-button", "which-pick-button")
-    whichPickButton.innerText = `${text} Pick ${i}`
+    whichPickButton.innerText = `Pick ${i + 1}`
     whichPickButton.addEventListener("click", event => setSidebarPick(event.currentTarget))
-    whichPickButton.dataset.side = side
-    whichPickButton.dataset.pickNumber = i
+    whichPickButton.dataset.pickNumber = i + 1
     whichPickSelect.append(whichPickButton)
 }
 
@@ -537,14 +534,15 @@ const selectedBGColour = "#CECECE"
 const whichPickButtons = document.getElementsByClassName("which-pick-button")
 let sidebarButtonPickSide, sidebarButtonPickNumber
 function setSidebarPick(element) {
-    sidebarButtonPickSide = element.dataset.side
     sidebarButtonPickNumber = element.dataset.pickNumber
 
     for (let i = 0; i < whichPickButtons.length; i++) {
         whichPickButtons[i].style.backgroundColor = "transparent"
+        whichPickButtons[i].style.color = "unset"
     }
 
     element.style.backgroundColor = selectedBGColour
+    element.style.color = "black"
     setPickContainer(element)
 }
 
