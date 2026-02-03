@@ -14,10 +14,7 @@
     src: url("../fonts/Ageta\ Chubby\ Demo.otf")
 }
 
-.main { 
-    background-image: url("static/background.png");
-    font-family: "Alan Sans";
-}
+.main {  font-family: "Alan Sans"; }
 
 /* Logo */
 .logo {
