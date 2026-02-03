@@ -5,7 +5,8 @@ let currentTeamNumber = 0
 let allTeams  = []
 Promise.all([loadTeams()]).then(([teams]) => {
     // Load teams
-    allTeams = teams
+    allTeams = teams.sort((a, b) => b.team_seed - a.team_seed)
+    console.log(allTeams)
     renderTeam()
 })
 

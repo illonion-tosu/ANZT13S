@@ -35,7 +35,7 @@ async function submit() {
             "gim1-score": Number(textAreaElValueSplitSplit[26]),
             "gim1-rank": Number(textAreaElValueSplitSplit[27]),
             "gim2-score": Number(textAreaElValueSplitSplit[28]),
-            "gim2-rank": Number(textAreaElValueSplitSplit[28])
+            "gim2-rank": Number(textAreaElValueSplitSplit[29])
         }
         teamStats.push(teamStat)
     }
