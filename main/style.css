@@ -167,3 +167,15 @@
     top: -29px;
     height: 170px;
 }
+
+/* Chat Box */
+.chat-box {
+    top: 1260px;
+    width: 833px;
+    height: 166px;
+}
+/* Chat Display Container */
+.chat-display-container {
+    top: 1262px;
+    height: 148px;
+}

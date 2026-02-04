@@ -61,3 +61,54 @@
     flex-direction: row-reverse;
 }
 .team-blue-point-container { left: var(--team-point-container-x); }
+
+/* Chat Box */
+.chat-box {
+    top: 1260px;
+}
+
+/* Chat Display Container */
+.chat-display-container {
+    top: 1262px;
+    height: 148px;
+}
+.chat-display-wrapper {
+    --margin: 7px;
+    position: absolute;
+    top: var(--margin);
+    left: var(--margin);
+    right: var(--margin);
+    bottom: var(--margin);
+
+    width: calc(100% - var(--margin) * 2);
+    max-height: calc(100% - var(--margin) * 2);
+
+    overflow-y: auto;
+    scroll-behavior: smooth;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+/* Chat Message */
+.chat-message-wrapper {
+    width: 100%;
+    display: flex;
+    font-family: "Alan Sans";
+    font-weight: 500;
+    text-shadow: 0px 5px 8.37px rgba(0, 0, 0, 0.27);
+    font-size: 24px;
+    letter-spacing: -0.7px;
+    color: white;
+}
+.chat-message-time {
+    color: rgb(209, 189, 83);
+    width: 14%;
+    text-align: center;
+}
+.unknown { color: rgb(255, 233, 103); }
+.left { color: rgb(255, 103, 103); }
+.right { color: rgb(103, 220, 255); }
+.bot { color: rgb(103, 255, 136); }
