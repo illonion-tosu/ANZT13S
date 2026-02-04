@@ -1,5 +1,7 @@
 :root {
     --team-name-x: 1720px;
+
+    --light-gray: rgb(209, 209, 209);
 }
 
 /* Ageta Chubby */
@@ -24,4 +26,88 @@
     top: 40px;
     font-size: 33px;
     width: 374px;
+}
+
+/* Now Playing Section */
+.now-playing-section {
+    top: 8px;
+    width: 745px;
+    height: 144px;
+    font-family: "Alan Sans";
+}
+.now-playing-background {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    opacity: 0.839;
+    background: center / cover;
+    /* background-image: url("https://assets.ppy.sh/beatmaps/2494107/covers/cover.jpg"); */
+    border-radius: 20px;
+}
+.now-playing-overlay {
+    position: absolute;
+    top: -2px;
+    left: -5px;
+}
+/* Now Playing Category */
+.now-playing-category { top: 10px; }
+/* Now Playing Stats */
+.now-playing-stats {
+    position: absolute;
+    top: 76px;
+    left: 15px;
+    font-size: 18px;
+    color: var(--light-gray);
+    text-shadow: 0px 6px 8px rgba(0, 0, 0, 0.47);
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    height: 47px;
+    flex-wrap: wrap;
+    column-gap: 35px;
+    transition: 500ms ease-in-out;
+}
+/* Now Playing Stats Side  */
+.now-playing-stat-left {
+    display: flex;
+    justify-content: space-between;
+}
+.now-playing-stat-right {
+    display: flex;
+    gap: 5px;
+}
+/* Now Playing Stats Content */
+.now-playing-stat-text { width: 22px; }
+.now-playing-stat-number {
+    color: white;
+    font-weight: 700;
+    text-align: right;
+    width: 40px;
+}
+.now-playing-stat-right .now-playing-stat-number { text-align: left; }
+/* Now Playing Metadata */
+.now-playing-metadata {
+    text-align: center;
+    top: 54px;
+    font-size: 18px;
+    color: white;
+    text-shadow: 0px 6px 8px rgba(0, 0, 0, 0.47);
+    font-weight: 600;
+    transition: 500ms ease-in-out;
+}
+.now-playing-title { color: var(--light-gray); }
+/* Now Playing Mapped By */
+.now-playing-mapped-by {
+    font-family: "Alan Sans";
+    font-weight: 500;
+    font-size: 18px;
+    position: absolute;
+    top: 79px;
+    right: 18px;
+    text-align: right;
+    color: var(--light-gray);
+}
+.now-playing-mapper {
+    color: white;
+    font-weight: 700;
 }
