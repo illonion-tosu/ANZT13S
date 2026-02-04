@@ -1,0 +1,23 @@
+/* Ageta Chubby */
+@font-face {
+    font-family: "Ageta Chubby";
+    src: url("../fonts/Ageta\ Chubby\ Demo.otf")
+}
+
+.main {
+    font-family: "Alan Sans";
+    background-image: url("static/background.png"); 
+}
+
+/* Logo */
+.logo {
+    position: absolute;
+    top: 19px;
+    left: 17px;
+}
+
+/* Round Name */
+.round-name {
+    left: 18px;
+    top: 107px;
+}
