@@ -1,3 +1,7 @@
+:root {
+    --team-name-x: 1720px;
+}
+
 /* Ageta Chubby */
 @font-face {
     font-family: "Ageta Chubby";
@@ -9,15 +13,15 @@
     background-image: url("static/background.png"); 
 }
 
-/* Logo */
-.logo {
-    position: absolute;
-    top: 19px;
-    left: 17px;
+/* Team Background */
+.team-background {
+    top: 42px;
+    height: 39px;
 }
 
-/* Round Name */
-.round-name {
-    left: 18px;
-    top: 107px;
+/* Team Name */
+.team-name {
+    top: 40px;
+    font-size: 33px;
+    width: 374px;
 }

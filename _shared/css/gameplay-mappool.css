@@ -1,0 +1,63 @@
+:root {
+    --team-background-x: 459px;
+    --team-point-container-x: 1725px;
+    --team-ban-container-x: 1721px;
+}
+
+/* Logo */
+.logo {
+    position: absolute;
+    top: 19px;
+    left: 17px;
+}
+
+/* Round Name */
+.round-name {
+    left: 18px;
+    top: 107px;
+}
+
+/* Team Background */
+.team-background {
+    position: absolute;
+    width: 388px;
+}
+.team-red-background {
+    background-image: linear-gradient( 90deg, rgb(208,146,146) 0%, rgb(200,34,112) 100%);
+    left: var(--team-background-x);
+    box-shadow: 0 0 10px 4px rgba(200, 34, 112, 0.5);
+}
+.team-blue-background {
+    background-image: linear-gradient( 90deg, rgb(1,50,233) 0%, rgb(0,219,222) 100%);
+    right: var(--team-background-x);
+    box-shadow: 0 0 10px 4px rgba(1, 50, 233, 0.5);
+}
+
+/* Team Name */
+.team-name {
+    position: absolute;
+    color: white;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-indent: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.team-red-name { 
+    right: var(--team-name-x);
+    text-align: right;
+}
+.team-blue-name { left: var(--team-name-x); }
+/* Team Point Container */
+.team-point-container {
+    position: absolute;
+    top: 180px;
+    display: flex;
+    gap: 11px;
+}
+.team-red-point-container {
+    right: var(--team-point-container-x);
+    flex-direction: row-reverse;
+}
+.team-blue-point-container { left: var(--team-point-container-x); }
