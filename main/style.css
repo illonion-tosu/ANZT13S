@@ -54,7 +54,11 @@
     left: -5px;
 }
 /* Now Playing Category */
-.now-playing-category { top: 10px; }
+.now-playing-category { 
+    top: 10px;
+    opacity: 1;
+    transition: 500ms ease-in-out;
+}
 /* Now Playing Stats */
 .now-playing-stats {
     position: absolute;
@@ -66,7 +70,7 @@
     font-weight: 500;
     display: flex;
     flex-direction: column;
-    height: 47px;
+    height: 50px;
     flex-wrap: wrap;
     column-gap: 35px;
     transition: 500ms ease-in-out;
@@ -86,7 +90,8 @@
     color: white;
     font-weight: 700;
     text-align: right;
-    width: 40px;
+    white-space: nowrap;
+    min-width: 40px;
 }
 .now-playing-stat-right .now-playing-stat-number { text-align: left; }
 /* Now Playing Metadata */
@@ -181,6 +186,4 @@
 }
 
 /* Team Point Container */
-.team-point-container {
-    top: 90px;
-}
+.team-point-container { top: 90px; }
