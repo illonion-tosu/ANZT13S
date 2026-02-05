@@ -76,6 +76,7 @@ async function getBeatmaps() {
         responseJson[0].main_mods = allBeatmaps[i].main_mods
         responseJson[0].mods = allBeatmaps[i].mods
         responseJson[0].mod_customs = allBeatmaps[i].mod_customs
+        responseJson[0].multiplier = allBeatmaps[i].multiplier
 
         allBeatmapsJson.push(responseJson[0])
     }

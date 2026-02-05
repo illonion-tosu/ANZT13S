@@ -17,6 +17,7 @@
     <!-- Other scripts -->
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="../_shared/deps/reconnecting-websocket.min.js"></script>
+    <script src="../_shared/deps/countUp.js"></script>
 </head>
 <body>
     <div class="page-size main">
@@ -68,28 +69,30 @@
         </div>
 
         <!-- Score area -->
-        <div class="playing-score-container">
+        <div class="playing-score-container" id="playing-score-container">
             <!-- Crown -->
-            <img class="crown absolute-center-x" src="../_shared/assets/winner-crowns/winner-red-map.png">
-            <img class="crown absolute-center-x" src="../_shared/assets/winner-crowns/winner-blue-map.png">
+            <img class="crown absolute-center-x" id="winner-red-crown" src="../_shared/assets/winner-crowns/winner-red-map.png">
+            <img class="crown absolute-center-x" id="winner-blue-crown" src="../_shared/assets/winner-crowns/winner-blue-map.png">
 
             <!-- Scorebar -->
-            <div class="score-bar score-bar-left"></div>
-            <div class="score-bar score-bar-right"></div>
+            <div class="score-bar score-bar-left" id="score-bar-left"></div>
+            <div class="score-bar score-bar-right" id="score-bar-right"></div>
 
             <!-- Score Difference -->
-            <div class="score-difference score-difference-left">-197,802</div>
-            <div class="score-difference score-difference-right">-197,802</div>
+            <div class="score-difference score-difference-left" id="score-difference-left">-197,802</div>
+            <div class="score-difference score-difference-right" id="score-difference-right">-197,802</div>
 
             <!-- Scores -->
-            <div class="score score-left">123,321</div>
-            <div class="score score-right score-lead">321,123</div>
+            <div class="score score-left" id="score-left">123,321</div>
+            <div class="score score-right score-lead" id="score-right">321,123</div>
         </div>
 
         <!-- Chat Box -->
-        <img class="chat-box" src="../_shared/assets/chat-box.png">
-        <div class="chat-display-container">
-            <div class="chat-display-wrapper" id="chat-display-wrapper"></div>
+        <div id="chat-container">
+            <img class="chat-box" src="../_shared/assets/chat-box.png">
+            <div class="chat-display-container">
+                <div class="chat-display-wrapper" id="chat-display-wrapper"></div>
+            </div>
         </div>
     </div>
 

@@ -126,6 +126,8 @@
     position: absolute;
     top: 1242px;
     width: 2560px;
+    opacity: 1;
+    transition: 500ms ease-in-out;
 }
 /* Score bars */
 .score-bar {
@@ -133,6 +135,7 @@
     background-color: white;
     width: 235px;
     height: var(--score-bar-height);
+    transition: 200ms ease-in-out;
 }
 .score-bar-left {
     right: var(--score-bar-x);
@@ -171,9 +174,14 @@
 .crown {
     top: -29px;
     height: 170px;
+    transition: 200ms ease-in-out;
 }
 
 /* Chat Box */
+.chat-container {
+    opacity: 1;
+    transition: 500ms ease-in-out;
+}
 .chat-box {
     top: 1260px;
     width: 833px;

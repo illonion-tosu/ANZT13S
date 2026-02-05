@@ -28,7 +28,35 @@ const nowPlayingSrNumberEl = document.getElementById("now-playing-sr-number")
 const nowPlayingStatsEl = document.getElementById("now-playing-stats")
 const nowPlayingMetadataEl = document.getElementById("now-playing-metadata")
 const nowPlayingMappedByEl = document.getElementById("now-playing-mapped-by")
-let mapId, mapChecksum, foundMapInMappool = false
+let mapId, mapChecksum, foundMapInMappool = false, currentMap
+
+// Bottom Containers
+const chatContainerEl = document.getElementById("chat-container")
+const playingScoreContainerEl = document.getElementById("playing-score-container")
+let noOfClients, previousNoOfClients
+
+// Scores
+const scoreLeftEl = document.getElementById("score-left")
+const scoreRightEl = document.getElementById("score-left")
+// Score Difference
+const scoreDifferenceLeftEl = document.getElementById("score-difference-left")
+const scoreDifferenceRightEl = document.getElementById("score-difference-right")
+// Score bar
+const scoreBarLeftEl = document.getElementById("score-bar-left")
+const scoreBarRightEl = document.getElementById("score-bar-right")
+const scoreBarMaxWidth = 1280
+// Winner Red Crown
+const winnerRedCrownEl = document.getElementById("winner-red-crown")
+const winnerBlueCrownEl = document.getElementById("winner-blue-crown")
+
+// Animation
+const animation = {
+    // Score
+    "scoreLeft": new CountUp(scoreLeftEl, 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ",", decimal: ".", suffix: ""}),
+    "scoreRight": new CountUp(scoreRightEl, 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ",", decimal: ".", suffix: ""}),
+    "scoreDifferenceLeft": new CountUp(scoreLeftEl, 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ",", decimal: ".", suffix: ""}),
+    "scoreDifferenceRight": new CountUp(scoreRightEl, 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ",", decimal: ".", suffix: ""}),
+}
 
 // Socket
 const socket = createTosuWsSocket()
@@ -36,17 +64,18 @@ socket.onmessage = event => {
     const data = JSON.parse(event.data)
     console.log(data)
 
-    if (mapId !== data.beatmap.id || mapChecksum !== data.beatmap.checksum) {
-        mapId = data.beatmap.id
-        mapChecksum = data.beatmap.checksum
+    const beatmapData = data.beatmap
+    if (mapId !== beatmapData.id || mapChecksum !== beatmapData.checksum) {
+        mapId = beatmapData.id
+        mapChecksum = beatmapData.checksum
         foundMapInMappool = false
 
         // Metadata
-        nowPlayingBackgroundEl.style.backgroundImage = `url("https://assets.ppy.sh/beatmaps/${data.beatmap.set}/covers/cover.jpg")`
-        nowPlayingArtistEl.textContent = data.beatmap.artist
-        nowPlayingTitleEl.textContent = data.beatmap.title
-        nowPlayingVersionEl.textContent = `[${data.beatmap.version}]`
-        nowPlayingMapperEl.textContent = data.beatmap.mapper
+        nowPlayingBackgroundEl.style.backgroundImage = `url("https://assets.ppy.sh/beatmaps/${beatmapData.set}/covers/cover.jpg")`
+        nowPlayingArtistEl.textContent = beatmapData.artist
+        nowPlayingTitleEl.textContent = beatmapData.title
+        nowPlayingVersionEl.textContent = `[${beatmapData.version}]`
+        nowPlayingMapperEl.textContent = beatmapData.mapper
 
         const currentMap = findBeatmap(mapId)
         if (currentMap) {
@@ -77,11 +106,102 @@ socket.onmessage = event => {
         }
     }
 
+    // Stats if map not in mappool
+    const beatmapStats = beatmapData.stats
     if (foundMapInMappool) {
-        nowPlayingCsNumberEl.textContent = data.beatmap.stats.cs.converted.toFixed(1)
-        nowPlayingOdNumberEl.textContent = data.beatmap.stats.od.converted.toFixed(1)
-        nowPlayingArNumberEl.textContent = data.beatmap.stats.ar.converted.toFixed(1)
-        nowPlayingSrNumberEl.textContent = data.beatmap.stats.stars.total.toFixed(2)
+        nowPlayingCsNumberEl.textContent = beatmapStats.cs.converted.toFixed(1)
+        nowPlayingOdNumberEl.textContent = beatmapStats.od.converted.toFixed(1)
+        nowPlayingArNumberEl.textContent = beatmapStats.ar.converted.toFixed(1)
+        nowPlayingSrNumberEl.textContent = beatmapStats.stars.total.toFixed(2)
+    }
+
+    // Determine if chat or scores should be shown 
+    noOfClients = data.tourney.clients.length
+    if (noOfClients !== previousNoOfClients) {
+        previousNoOfClients = noOfClients
+        if (noOfClients !== 0) {
+            chatContainerEl.style.opacity = 0
+            playingScoreContainerEl.style.opacity = 1
+        } else {
+            chatContainerEl.style.opacity = 1
+            playingScoreContainerEl.style.opacity = 0      
+        }
+    }
+
+    if (noOfClients !== 0) {
+        // Set scores
+        let currentRedScore = 0
+        let currentBlueScore = 0
+        for (let i = 0; i < noOfClients; i++) {
+            const score = data.tourney.clients[i].play.score
+            if (data.tourney.clients[i].team === "left") currentRedScore += score
+            else currentBlueScore += score
+        }
+
+        // Show scores
+        animation.scoreLeft.update(currentRedScore)
+        animation.scoreRight.update(currentBlueScore)
+
+        // Show score difference
+        const scoreDifference = -Math.abs(currentRedScore - currentBlueScore)
+        animation.scoreDifferenceLeft.update(scoreDifference)
+        animation.scoreDifferenceRight.update(scoreDifference)
+
+        // Score bar width
+        let multiplier = 0.5
+        if (currentMap) multiplier = currentMap.multiplier
+        let scoreBarDifferencePercent = Math.min(scoreDifference / (450000 * multiplier), 1)
+        let scoreBarRectangleWidth = Math.min(Math.pow(scoreBarDifferencePercent, 0.5) * scoreBarMaxWidth, scoreBarMaxWidth)
+
+        // Crown opacity
+        let crownDifferencePercent = Math.min(scoreDifference / (100000 * multiplier), 1)
+        let crownOpacity = Math.min(Math.pow(crownDifferencePercent, 0.5), 1)
+
+        // Score bar
+        scoreBarLeftEl
+        scoreBarRightEl
+
+        // Do all graphical updates
+        if (currentRedScore > currentBlueScore) {
+            // Score lead class
+            scoreLeftEl.classList.add("score-lead")
+            scoreRightEl.classList.remove("score-lead")
+            // Score difference
+            scoreDifferenceLeftEl.style.opacity = 0
+            scoreDifferenceRightEl.style.opacity = 1
+            // Score bar
+            scoreBarLeftEl.style.width = `${scoreBarRectangleWidth}px`
+            scoreBarRightEl.style.width = "0px"
+            // Crown
+            winnerRedCrownEl.style.opacity = crownOpacity
+            winnerBlueCrownEl.style.opacity = 0
+        } else if (currentRedScore === currentBlueScore) {
+            // Score lead class
+            scoreLeftEl.classList.remove("score-lead")
+            scoreRightEl.classList.remove("score-lead")
+            // Score difference
+            scoreDifferenceLeftEl.style.opacity = 0
+            scoreDifferenceRightEl.style.opacity = 0
+            // Score bar
+            scoreBarLeftEl.style.width = "0px"
+            scoreBarRightEl.style.width = "0px"
+            // Crown
+            winnerRedCrownEl.style.opacity = 0
+            winnerBlueCrownEl.style.opacity = 0
+        } else if (currentRedScore < currentBlueScore) {
+            // Score lead class
+            scoreLeftEl.classList.remove("score-lead")
+            scoreRightEl.classList.add("score-lead")
+            // Score difference
+            scoreDifferenceLeftEl.style.opacity = 1
+            scoreDifferenceRightEl.style.opacity = 0
+            // Score bar
+            scoreBarLeftEl.style.width = "0px"
+            scoreBarRightEl.style.width = `${scoreBarRectangleWidth}px`
+            // Crown
+            winnerRedCrownEl.style.opacity = 0
+            winnerBlueCrownEl.style.opacity =crownOpacity
+        }
     }
 }
 
