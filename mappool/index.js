@@ -189,18 +189,22 @@ function mapClickEvent(event) {
             currentTile.dataset.id = currentMap.beatmap_id
             currentTile.style.backgroundImage = `url("https://assets.ppy.sh/beatmaps/${currentMap.beatmapset_id}/covers/cover.jpg")`
             currentTile.children[0].setAttribute("src", `../_shared/assets/category-images/${currentMap.mod.toUpperCase()}${currentMap.order}.png`)
-            currentTile.children[3].setAttribute("src", `static/pick-bgs/${team}-pick-bg.png`)
-            currentTile.children[4].textContent = `${team.toUpperCase()} PICK`
+            currentTile.children[3].setAttribute("src", `static/pick-bgs/${currentMap.mod === "TB" ? "tb" : team}-pick-bg.png`)
+            currentTile.children[4].textContent = `${currentMap.mod === "TB" ? "TB" : team.toUpperCase()} PICK`
             currentPickTile = currentTile
             mapsFound = 1
             notYetPicked = false
 
-            if (team === "red") {
+
+            if (team === "red" && currentMap.mod !== "TB") {
                 pickVideoRedEl.style.opacity = 1
                 pickVideoBlueEl.style.opacity = 0
-            } else if (team === "blue") {
+            } else if (team === "blue" && currentMap.mod !== "TB") {
                 pickVideoRedEl.style.opacity = 0
                 pickVideoBlueEl.style.opacity = 1
+            } else {
+                pickVideoRedEl.style.opacity = 0
+                pickVideoBlueEl.style.opacity = 0
             }
             break
         }
@@ -213,7 +217,7 @@ function mapClickEvent(event) {
             currentMapArtistEl.textContent = currentMap.artist
             currentMapTitleEl.textContent = currentMap.title
             currentMapMapperNameEl.textContent = currentMap.creator
-            currentMapPickerEl.setAttribute("src", `static/picks/${team}-pick.png`)
+            currentMapPickerEl.setAttribute("src", `static/picks/${currentMap.mod === "TB" ? "tb" : team}-pick.png`)
             currentMapPickerEl.style.top = "535px"
             currentMapPickerEl.style.height = "65px"
 
