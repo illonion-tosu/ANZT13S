@@ -21,7 +21,7 @@ const matchSelectEl = document.getElementById("match-select")
 
 // Load mappool
 let bestOf = 0
-let banCount = 0
+let banCount = 2
 const roundNameEl = document.getElementById("round-name")
 let allBeatmaps = []
 
@@ -33,15 +33,12 @@ Promise.all([loadBeatmaps(), loadTeams(), loadMatches()]).then(([beatmaps, teams
     switch (beatmaps.roundName) {
         case "RO24": case "RO16":
             bestOf = 9
-            banCount = 1
             break
         case "QF": case "SF":
             bestOf = 11
-            banCount = 2
             break
         case "F": case "GF":
             bestOf = 13
-            banCount = 2
             break
     }
 
@@ -738,8 +735,8 @@ function sidebarSetPickAction() {
     currentTile.dataset.id = currentMap.beatmap_id
     currentTile.style.backgroundImage = `url("https://assets.ppy.sh/beatmaps/${currentMap.beatmapset_id}/covers/cover.jpg")`
     currentTile.children[0].setAttribute("src", `../_shared/assets/category-images/${currentMap.mod.toUpperCase()}${currentMap.order}.png`)
-    currentTile.children[3].setAttribute("src", `static/pick-bgs/${team}-pick-bg.png`)
-    currentTile.children[4].textContent = `${team.toUpperCase()} PICK`
+    currentTile.children[3].setAttribute("src", `static/pick-bgs/${currentMap.mod === "tb" ? "TB" : team}-pick-bg.png`)
+    currentTile.children[4].textContent = `${currentMap.mod === "TB" ? "TB" : team.toUpperCase()} PICK`
 }
 
 // Sidebar Remove Ban / Pick Action functions
