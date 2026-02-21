@@ -92,12 +92,12 @@ setInterval(async () => {
     if (currentTeamBlueName !== previousTeamBlueName) {
         previousTeamBlueName = currentTeamBlueName
         teamBlueNameEl.textContent = currentTeamBlueName
-        currentTeamBlue = await findTeam(currentTeamRedName)
+        currentTeamBlue = await findTeam(currentTeamBlueName)
 
         // Player details
         for (let i = 1; i < 3; i++) {
-            document.getElementById(`player${i + 2}-name`).textContent = currentTeamRed[`player${i}-name`]
-            document.getElementById(`player${i + 2}-rank`).textContent = `#${currentTeamRed[`player${i}-rank`]}`
+            document.getElementById(`player${i + 2}-name`).textContent = currentTeamBlue[`player${i}-name`]
+            document.getElementById(`player${i + 2}-rank`).textContent = `#${currentTeamBlue[`player${i}-rank`]}`
         }
     }
 
@@ -105,8 +105,10 @@ setInterval(async () => {
     currentBestOf = Number(getCookie("totalBestOf"))
     currentPickString = localStorage.getItem("currentPickString") || ""
     currentWinnerString = localStorage.getItem("currentWinnerString") || ""
+
     if (previousBestOf !== currentBestOf ||
-        previousPickString !== currentPickString
+        previousPickString !== currentPickString ||
+        previousWinnerString !== currentWinnerString
     ) {
         pickContainerEl.innerHTML = ""
         previousBestOf = currentBestOf

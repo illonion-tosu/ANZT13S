@@ -104,9 +104,10 @@ Promise.all([loadBeatmaps(), loadTeams(), loadMatches(), initialiseLogsApi()]).t
     for (let i = 0; i < matches.length; i++) {
         const option = document.createElement("option")
         option.setAttribute("value", matches[i].id)
-        option.textContent = `${shortenString(matches[i].team_a)} vs ${shortenString(matches[i].team_b)}`
+        option.textContent = `${matches[i].id}. ${shortenString(matches[i].team_a)} vs ${shortenString(matches[i].team_b)}`
         matchSelectEl.append(option)
     }
+    matchSelectEl.setAttribute("size", matchSelectEl.childElementCount)
 
     allTeams = teams
 })
@@ -118,7 +119,7 @@ function createBanImage() {
 }
 
 // Shorten string
-const shortenString = str => str.length > 10 ? str.slice(0, 10) + "..." : str
+const shortenString = str => str.length > 10 ? str.slice(0, 8) + "..." : str
 
 // Ban Containers
 const teamRedBanContainerEl = document.getElementById("team-red-ban-container")
@@ -264,7 +265,6 @@ let chatLen = 0
 const socket = createTosuWsSocket()
 socket.onmessage = event => {
     const data = JSON.parse(event.data)
-    console.log(data)
 
     // Current not yet picked
     if (currentNotYetPicked !== currentPicker) {
@@ -303,16 +303,13 @@ socket.onmessage = event => {
             checkedWinner = false
             currentState = 3
 
-            console.log(currentRedScore, currentBlueScore)
         } else {
             // Results
-            console.log(checkedWinner, currentState, currentPickTile)
             if (!checkedWinner && currentPickTile && isStarOn()) {
                 
                 checkedWinner = true
 
                 const winner = currentRedScore > currentBlueScore ? "red" : currentBlueScore > currentRedScore ? "blue" : undefined
-                console.log(currentRedScore, currentBlueScore, winner)
                 if (winner) {
                     // Set pick
                     currentPickTile.children[2].setAttribute("src", `../_shared/assets/winner-crowns/winner-${winner}-map.png`)
@@ -381,8 +378,8 @@ socket.onmessage = event => {
         if (pickContainerEl.children[i].hasAttribute("data-id") &&
             pickContainerEl.children[i].children[2].hasAttribute("src")
         ) {
-            if (pickContainerEl.children[i].children[2].getAttribute("src").includes("red")) currentWinnerArray[i] = "red"
-            else if (pickContainerEl.children[i].children[2].getAttribute("src").includes("blue")) currentWinnerArray[i] = "blue"
+            if (pickContainerEl.children[i].children[2].getAttribute("src").includes("winner-red-map")) currentWinnerArray[i] = "red"
+            else if (pickContainerEl.children[i].children[2].getAttribute("src").includes("winner-blue-map")) currentWinnerArray[i] = "blue"
         }
     }
     if (currentWinnerArray !== previousWinnerArray) {
